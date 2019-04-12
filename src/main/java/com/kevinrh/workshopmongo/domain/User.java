@@ -1,8 +1,11 @@
 package com.kevinrh.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +25,16 @@ public class User implements Serializable{
 	private String nome;
 	@Getter @Setter
 	private String email;
+	
+	@DBRef(lazy=true)
+	@Getter @Setter
+	private List<Post> posts = new ArrayList<>();
+	
+	public User(String id, String nome, String email) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+	}
 	
 	
 	@Override
