@@ -33,4 +33,11 @@ public class PostResource {
 		List<Post> posts = service.findByTitle(text);
 		return ResponseEntity.ok().body(posts);
 	}
+	
+	@RequestMapping(value="/bodysearch", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> findByBody(@RequestParam(value="text", defaultValue="") String text){
+		text = URL.decodeParam(text);
+		List<Post> posts = service.findByBody(text);
+		return ResponseEntity.ok().body(posts);
+	}
 }
